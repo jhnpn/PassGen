@@ -42,7 +42,7 @@ h1 {
 .wrapper .password-section {
     position: relative;
     border: 2px solid lightgray;
-    color: gray;
+    color: rgb(71, 69, 69);
     margin-top: 20px;
     padding: 2px 2px 2px 8px;
     border-radius: 5px;
@@ -77,10 +77,10 @@ h1 {
     opacity: 1;
 }
 
-.wrapper .password-section .copy {
+.wrapper .input-section .copy {
     height: 100%;
     width: 50px;
-    background: #e60023;
+    background: #0099ff;
     border: 0;
     color: white;
     border-radius: 2px;
@@ -89,8 +89,37 @@ h1 {
     transition: all 0.3s ease;
 }
 
-.wrapper .password-section .copy:hover {
-    background: #3ba0ff;
+.wrapper .input-section .copy:hover {
+    background: #7c7c7c;
+}
+
+.wrapper .controls {
+    text-align: left;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.wrapper .controls .control-l .control-u
+.control-n .control-s {
+    padding: 3px;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    margin: 2px;
+}
+
+.wrapper .controls .generate {
+    width: 100%;
+    border: 0;
+    color: white;
+    background: #0279db;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.wrapper .controls .generate:hover {
+    background: #000000;
 }
 
 #length-box {
@@ -99,4 +128,34 @@ h1 {
 
   #length-box input {
     width: 100%;
+}
+
+input[type="checkbox"] {
+    visibility: hidden;
+}
+
+label.check-label {
+    position: relative;
+}
+
+label.check-label:before {
+    content: "";
+    height: 1rem;
+    width: 1rem;
+    left: -24px;
+    top: 0;
+    border: 0.5px solid lightgray;
+    position: absolute;
+    background: transparent;
+    transition: all 0.3s cubic-bezier(0, 0.82, 1, 1.81);
+}
+
+input[type="checkbox"]:checked + label.check-label:before {
+    content: "♦";
+    font-family: "FontAwesome";
+    font-size: 0.8rem;
+    color: #212121;
+    text-align: center;
+    background: #03cdff;
+    transition: all 0.3s cubic-bezier(0, 0.82, 1, 1.81);
 }
