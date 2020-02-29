@@ -6,3 +6,85 @@ body {
     font-weight: 300;
 }
 
+.info {
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+h1 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.title {
+    background: #0887fd;
+    padding: 2px, 10px;
+    color: white;
+}
+
+.input-section {
+    padding: 20px;
+}
+
+.wrapper {
+    overflow: hidden;
+    margin: auto;
+    width: 90%;
+    max-width: 380px;
+    background: rgba(255,255,255,.2);
+    border-radius: 5px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.wrapper .password-section {
+    position: relative;
+    border: 2px solid lightgray;
+    color: gray;
+    margin-top: 20px;
+    padding: 2px 2px 2px 8px;
+    border-radius: 5px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper .password-section .alert {
+    position: absolute;
+    padding: 0 5px;
+    border-radius: 2px;
+    width: 21ch;
+    height: 89%;
+    left: 2px;
+    top: -100%;
+    width: 96%;
+    text-align: center;
+    color: #333;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.wrapper .password-section .alert.success {
+    background: rgb(29,161,242, 0.9);
+    opacity: 1;
+}
+
+.wrapper .password-section .alert.fail {
+    background: rgb(230,0,35, 0.9);
+    color: white;
+    opacity: 1;
+}
+
+.wrapper .password-section .copy {
+    height: 100%;
+    width: 50px;
+    background: #e60023;
+    border: 0;
+    color: white;
+    border-radius: 2px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
