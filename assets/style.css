@@ -88,3 +88,15 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+.wrapper .password-section .copy:hover {
+    background: #3ba0ff;
+}
+
+#length-box {
+    width: 100%;
+}
+
+  #length-box input {
+    width: 100%;
+}
