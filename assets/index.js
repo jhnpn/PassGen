@@ -55,4 +55,7 @@ function passGen() {
     } else {
         passField.innerHTML = userPass;
     }
+
+    // now to work on the copy button
+    copyButton.setAttribute("data-clipboard-text", userPass);
 }
