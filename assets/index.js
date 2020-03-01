@@ -25,7 +25,6 @@ function passGen() {
 
     if (lowercaseSelect.checked) {
         passCharSet += lowercase;
-        console.log(lowercaseSelect);
     };
     if (uppercaseSelect.checked) {
         passCharSet += uppercase;
@@ -43,5 +42,17 @@ function passGen() {
         userPass += passCharSet.charAt(
             Math.floor(Math.random() * passCharSet.length)
         );
+    }
+
+    // this will be for when no options have been selected
+    if (userPass == "") {
+        var alertbox = document.getElementById("alert");
+        alertbox.innerHTML = "You must have some options selected before generating.";
+        alertbox.classList.add("fail");
+        setTimeout(function() {
+            alertbox.classList.remove("fail");
+        }, 3000);
+    } else {
+        passField.innerHTML = userPass;
     }
 }
