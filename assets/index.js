@@ -1,61 +1,32 @@
-// need variables for each of the needed characters
-var lowercase = "abcdefghijklmnopqrstuvwxyz";
-var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numbers = "1234567890";
-var specials = "`~!@#$%^&*";
-var passLength;
-var userPass;
-var passCharSet;
-var clipboard = new clipboard("copy");
-
-// now to get the DOM elements
+// DOM Elements
 var lowercaseSelect = document.getElementById("lowercase");
 var uppercaseSelect = document.getElementById("uppercase");
 var numberSelect = document.getElementById("numbers");
 var specialSelect = document.getElementById("specials");
-var passField = document.getElementById("passfield");
+var passField = document.getElementById("pass-field");
 var generateButton = document.getElementById("generate-button");
 var copyButton = document.getElementById("copy-button");
 
-// now to make a function that will generate using what ever options
-// we've selected
-function passGen() {
-    userPass = "";
-    passCharSet = "";
-
-    if (lowercaseSelect.checked) {
-        passCharSet += lowercase;
-    };
-    if (uppercaseSelect.checked) {
-        passCharSet += uppercase;
-    };
-    if (numberSelect.checked) {
-        passCharSet += numbers;
-    };
-    if (specialSelect.checked) {
-        passCharSet += specials;
-    };
-    passLength = Number(passField.length);
-
-    // let's create a loop
-    for (var i = 0; i < passLength; i++) {
-        userPass += passCharSet.charAt(
-            Math.floor(Math.random() * passCharSet.length)
-        );
-    }
-
-    // this will be for when no options have been selected
-    if (userPass == "") {
-        var alertbox = document.getElementById("alert");
-        alertbox.innerHTML = "You must have some options selected before generating.";
-        alertbox.classList.add("fail");
-        setTimeout(function() {
-            alertbox.classList.remove("fail");
-        }, 3000);
-    } else {
-        passField.innerHTML = userPass;
-    }
-
-    // now to work on the copy button
-    copyButton.setAttribute("data-clipboard-text", userPass);
+// these functions will randomly pull out what ever option we choose
+function randomLower() {
+    var lowercase = "abcdefghijklmnopqrstuvwxyz";
+    return lowercase[Math.floor(Math.random() * lowercase.length)];
 }
+
+function randomUpper() {
+    var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    return uppercase[Math.floor(Math.random() * uppercase.length)];
+}
+
+function randomNumber() {
+    var numbers = "1234567890";
+    return numbers[Math.floor(Math.random() * numbers.length)];
+}
+
+function randomSpecial() {
+    var specials = "`~!@#$%^&*";
+    return specials[Math.floor(Math.random() * specials.length)];
+}
+
+
+console.log(randomSpecial());
