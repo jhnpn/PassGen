@@ -4,7 +4,7 @@ var uppercaseSelect = document.getElementById("uppercase");
 var numberSelect = document.getElementById("numbers");
 var specialSelect = document.getElementById("special");
 var passLength = document.getElementById("passlength");
-var passField = document.getElementById("pass-field");
+var passField = document.getElementById("passfield");
 var generateButton = document.getElementById("generate");
 var copyButton = document.getElementById("copy-button");
 
@@ -31,12 +31,12 @@ function randomSpecial() {
 }
 
 // this is will include all those functions into one
-var randomSelect = {
+const randomSelect = {
     lowercase: randomLower,
     uppercase: randomUpper,
     numbers: randomNumber,
-    specials: randomSpecial,
-}
+    specials: randomSpecial
+};
 
 // for the range slider
 output = passLength.value;
@@ -54,7 +54,35 @@ generateButton.addEventListener("click", function() {
     var isNumber = numberSelect.checked;
     var isSpecial = specialSelect.checked;
 
-    console.log(isLower, isUpper, isNumber, isSpecial, length); //this will ensure if the checkboxes are working
+    // console.log(isLower, isUpper, isNumber, isSpecial, length); //this will ensure if the checkboxes are working
 
-    passField.innerText = generatePass(isLower, isUpper, isNumber, isSpecial, length);
+    passField.textContent = generatePass(isLower, isUpper, isNumber, isSpecial, length);
 });
+
+function generatePass(lower, upper, number, special, length) {
+    // create a string that will hold the password
+    var password = "";
+
+    // find a way to filter out unchecked options
+    var marksChecked = lower + upper + number + special;
+
+    var passArray = [{lower}, {upper}, {number}, {special}].filter
+    (
+        item => Object.values(item)[0]
+    );
+
+    if (marksChecked === 0) {
+        return "";
+    }
+
+    // create a for loop
+    for (var i = 0; i < length; i += marksChecked) {
+        passArray.forEach(type => {
+            var passFunc = Object.keys(type)[0];
+            console.log('passFunc: ', passFunc);
+            password += randomSelect[passFunc]();
+        });
+    }
+
+    console.log(password);
+}
