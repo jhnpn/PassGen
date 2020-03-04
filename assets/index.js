@@ -8,38 +8,18 @@ var passField = document.getElementById("passfield");
 var generateButton = document.getElementById("generate");
 var copyButton = document.getElementById("copy-button");
 
-// these functions will be a setup for when we randomly pull out 
-// what ever option we choose
-function randomLower() {
-    var lowercase = "abcdefghijklmnopqrstuvwxyz";
-    return lowercase[Math.floor(Math.random() * lowercase.length)];
-}
+var lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+"p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", 
+"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+var specials = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
-function randomUpper() {
-    var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    return uppercase[Math.floor(Math.random() * uppercase.length)];
-}
+// this is going to hold all the character sets
+var masterPass = [];
 
-function randomNumber() {
-    var numbers = "1234567890";
-    return numbers[Math.floor(Math.random() * numbers.length)];
-}
+var password = "";
 
-function randomSpecial() {
-    var specials = "`~!@#$%^&*";
-    return specials[Math.floor(Math.random() * specials.length)];
-}
-
-// this is will include all those functions into one
-const randomSelect = {
-    lowercase: randomLower,
-    uppercase: randomUpper,
-    numbers: randomNumber,
-    specials: randomSpecial,
-    length: passLength
-};
-
-// for the range slider
 output = passLength.value;
 
 passLength.oninput = function() {
@@ -47,7 +27,6 @@ passLength.oninput = function() {
     console.log(output);
 }
 
-// we need the event for the generateButton to function
 generateButton.addEventListener("click", function() {
     var length = +passLength.value;
     var isLower = lowercaseSelect.checked;
@@ -55,35 +34,30 @@ generateButton.addEventListener("click", function() {
     var isNumber = numberSelect.checked;
     var isSpecial = specialSelect.checked;
 
-    // console.log(isLower, isUpper, isNumber, isSpecial, length); //this will ensure if the checkboxes are working
-
-    passField.innerText = generatePass(isLower, isUpper, isNumber, isSpecial, length);
+    console.log(isLower, isUpper, isNumber, isSpecial, length); //this will ensure if the checkboxes are working
 });
 
-function generatePass(lower, upper, number, special, length) {
-    // create a string that will hold the password
-    passField = "";
-
-    // find a way to filter out unchecked options
-    var marksChecked = lower + upper + number + special;
-
-    var passArray = [{lower}, {upper}, {number}, {special}].filter
-    (
-        item => Object.values(item)[0]
-    );
-
-    if (marksChecked === 0) {
-        return "";
+if (isLower) {
+    for (var i = 0; i < lower.length; i++) {
+        masterPass.push(lower[i]);
     }
-
-    // create a for loop
-    for (var i = 0; i < length; i += marksChecked) {
-        passArray.forEach(type => {
-            var passFunc = Object.keys(type)[0];
-            // console.log('passFunc: ', passFunc);
-            passField += randomSelect[passFunc];
-        });
-    }
-
-    console.log(passField);
 }
+
+if (isUpper) {
+    for (var i = 0; i < upper.length; i++) {
+        masterPass.push(upper[i]);
+    }
+}
+
+if (isNumber) {
+    for (var i = 0; i < number.length; i++) {
+        masterPass.push(number[i]);
+    }
+}
+
+if (isSpecial) {
+    for (var i = 0; i < special.length; i++) {
+        masterPass.push(special[i]);
+    }
+}
+
