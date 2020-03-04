@@ -35,7 +35,8 @@ const randomSelect = {
     lowercase: randomLower,
     uppercase: randomUpper,
     numbers: randomNumber,
-    specials: randomSpecial
+    specials: randomSpecial,
+    length: passLength
 };
 
 // for the range slider
@@ -56,12 +57,12 @@ generateButton.addEventListener("click", function() {
 
     // console.log(isLower, isUpper, isNumber, isSpecial, length); //this will ensure if the checkboxes are working
 
-    passField.textContent = generatePass(isLower, isUpper, isNumber, isSpecial, length);
+    passField.innerText = generatePass(isLower, isUpper, isNumber, isSpecial, length);
 });
 
 function generatePass(lower, upper, number, special, length) {
     // create a string that will hold the password
-    var password = "";
+    passField = "";
 
     // find a way to filter out unchecked options
     var marksChecked = lower + upper + number + special;
@@ -79,10 +80,10 @@ function generatePass(lower, upper, number, special, length) {
     for (var i = 0; i < length; i += marksChecked) {
         passArray.forEach(type => {
             var passFunc = Object.keys(type)[0];
-            console.log('passFunc: ', passFunc);
-            password += randomSelect[passFunc]();
+            // console.log('passFunc: ', passFunc);
+            passField += randomSelect[passFunc];
         });
     }
 
-    console.log(password);
+    console.log(passField);
 }
