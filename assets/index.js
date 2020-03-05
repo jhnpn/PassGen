@@ -4,7 +4,6 @@ var uppercaseSelect = document.getElementById("uppercase");
 var numberSelect = document.getElementById("numbers");
 var specialSelect = document.getElementById("special");
 var passLength = document.getElementById("passlength");
-var passField = document.getElementById("passfield");
 var generateButton = document.getElementById("generate");
 var copyButton = document.getElementById("copy-button");
 
@@ -18,46 +17,61 @@ var specials = ["!", "@", "#", "$", "%", "^", "&", "*"];
 // this is going to hold all the character sets
 var masterPass = [];
 
-var password = "";
 
+// this is the output for the range slider
 output = passLength.value;
 
 passLength.oninput = function() {
     output = this.value;
     console.log(output);
-}
+};
 
-generateButton.addEventListener("click", function() {
-    var length = +passLength.value;
+generateButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    var hasLength = passLength.value;
     var isLower = lowercaseSelect.checked;
     var isUpper = uppercaseSelect.checked;
     var isNumber = numberSelect.checked;
     var isSpecial = specialSelect.checked;
 
-    console.log(isLower, isUpper, isNumber, isSpecial, length); //this will ensure if the checkboxes are working
+    var passField = document.getElementById("passfield").innerText;
+
+    passField = "";
+
+    // 
+    if (isLower) {
+        for (var i = 0; i < lower.length; i++) {
+            masterPass.push(lower[i]);
+        }
+    };
+    
+    if (isUpper) {
+        for (var i = 0; i < upper.length; i++) {
+            masterPass.push(upper[i]);
+        }
+    };
+    
+    if (isNumber) {
+        for (var i = 0; i < numbers.length; i++) {
+            masterPass.push(numbers[i]);
+        }
+    };
+    
+    if (isSpecial) {
+        for (var i = 0; i < specials.length; i++) {
+            masterPass.push(specials[i]);
+        }
+    };
+
+    for (var i = 0; i < hasLength; i++) {
+        var randomIndex = Math.floor(Math.random() * masterPass.length);
+        passField = passField + masterPass[randomIndex];
+    };
+
+    
+    console.log(passField);
+
+    // console.log(isLower, isUpper, isNumber, isSpecial, length); //this will ensure if the checkboxes are working
 });
 
-if (isLower) {
-    for (var i = 0; i < lower.length; i++) {
-        masterPass.push(lower[i]);
-    }
-}
-
-if (isUpper) {
-    for (var i = 0; i < upper.length; i++) {
-        masterPass.push(upper[i]);
-    }
-}
-
-if (isNumber) {
-    for (var i = 0; i < number.length; i++) {
-        masterPass.push(number[i]);
-    }
-}
-
-if (isSpecial) {
-    for (var i = 0; i < special.length; i++) {
-        masterPass.push(special[i]);
-    }
-}
 
