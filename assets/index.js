@@ -34,7 +34,7 @@ generateButton.addEventListener("click", function(event) {
     var isNumber = numberSelect.checked;
     var isSpecial = specialSelect.checked;
 
-    var passField = document.getElementById("passfield").innerText;
+    var passField = document.getElementById("passfield");
 
     passField = "";
 
